@@ -1,0 +1,57 @@
+<h2 mat-dialog-title>Edit User</h2>
+<mat-dialog-content>
+
+    <form fxLayout="column" autocomplete="off">
+        
+        <mat-form-field>
+            <mat-label>Email for login</mat-label>
+            <input  matInput placeholder="Email for login" type="text" name="email" autocomplete="false" [(ngModel)]="editUser.email">
+        </mat-form-field>  
+        
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput type="text" name="first_name" autocomplete="false" [(ngModel)]="editUser.name">
+        </mat-form-field>
+        
+        <mat-form-field>
+            <mat-label>Business Name</mat-label>
+            <input matInput type="text" name="business_name" autocomplete="false" [(ngModel)]="editUser.business_name">
+        </mat-form-field>
+        
+        
+        <mat-form-field>
+            <mat-label>Role</mat-label>
+            <mat-select name="permission" [(ngModel)]="editUser.permission">
+                <mat-option  value="user">User</mat-option>
+                <mat-option  value="admin" *ngIf="user.permission === 'admin'">Administrator</mat-option>
+            </mat-select>
+        </mat-form-field> 
+        
+        
+        <mat-form-field>
+            <mat-label>Status</mat-label>
+            <mat-select name="status" [(ngModel)]="editUser.status">
+                <mat-option  value="pending">Pending</mat-option>
+                <mat-option  value="approved">Approved</mat-option>
+            </mat-select>
+        </mat-form-field> 
+        
+    
+        
+        <mat-form-field>
+            <input matInput placeholder="Enter new password (optional)" type="password" name="new-user-password" autocomplete="false" [(ngModel)]="editUser.password">
+        </mat-form-field>    
+
+
+
+    </form>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+  <button mat-button (click)="updateUser()" color="primary">Update</button>
+</mat-dialog-actions>
+
+
+

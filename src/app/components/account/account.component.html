@@ -1,0 +1,55 @@
+<mat-card class="table-card">  
+    
+    
+    <div class="module-loading" *ngIf="loading">
+        <mat-spinner diameter="40"></mat-spinner>
+    </div>    
+    
+    
+    <div *ngIf="!loading">
+        <h2 class='account-settings-title'>Account Settings</h2>
+        <form (ngSubmit)="update()">
+            <div class="setting-item" fxLayout="row">
+                <div class="setting-name" fxFlex="33">Name</div>
+                <div class="setting-value" fxFlex="66">
+
+                    <mat-form-field appearance="outline">
+                        <input matInput type="text" placeholder="Name" name="name" [(ngModel)]="account.name">
+                    </mat-form-field>                
+
+                </div>
+            </div>  
+            <div class="setting-item" fxLayout="row">
+                <div class="setting-name" fxFlex="33">Email</div>
+                <div class="setting-value" fxFlex="66">
+
+                    <mat-form-field appearance="outline">
+                        <input matInput type="email" placeholder="Email" name="email" [(ngModel)]="account.email">
+                    </mat-form-field>                
+
+                </div>
+            </div>     
+
+            <div class="setting-item" fxLayout="row">
+                <div class="setting-name" fxFlex="33">Update Password</div>
+                <div class="setting-value" fxFlex="66">
+
+                    <mat-form-field appearance="outline">
+                        <input matInput type="password" placeholder="Enter New Password" name="password" [(ngModel)]="account.password">
+                    </mat-form-field>                
+
+                </div>
+            </div>
+            
+            <div class='acocunt-settings-update'>
+                <button mat-flat-button color="accent" [disabled]="account.loading" type='submit'>
+                    Update
+                    <mat-spinner class='button-spinner' diameter="14" mode="indeterminate" color="primary" *ngIf="account.loading"></mat-spinner>
+                </button>            
+            </div>
+            
+        </form>
+        
+    </div>
+    
+</mat-card>

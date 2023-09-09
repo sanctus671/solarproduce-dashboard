@@ -1,0 +1,151 @@
+<div class="small-chart-row" fxLayout="row">
+
+
+    
+
+    <mat-card class="chart-card standard-card" fxFlex="100">
+        <div class="chart-header" fxLayout="row">
+            <div class="chart-title" fxLayout="column">
+                <h3>Total orders</h3>
+                <p class="subtitle">{{totalOrders}} order{{totalOrders === 1 ? "" : "s"}} in the last {{statsTimeframes === 9999 ? "∞" : statsTimeframes}} days</p>  
+            </div>
+            <span fxFlex></span>
+            <span class="chart-actions">
+                <button mat-icon-button [matMenuTriggerFor]="menu1" disableRipple="true"><mat-icon>more_vert</mat-icon></button>
+                <mat-menu #menu1="matMenu">
+                    <button mat-menu-item (click)="changeTimeframe(7)">
+                        <span>Last 7 Days</span>
+                    </button> 
+                    <button mat-menu-item (click)="changeTimeframe(30)">
+                        <span>Last 30 Days</span>
+                    </button>    
+                    <button mat-menu-item (click)="changeTimeframe(180)">
+                        <span>Last 180 Days</span>
+                    </button>    
+                    <button mat-menu-item (click)="changeTimeframe(365)">
+                        <span>Last 365 Days</span>
+                    </button>      
+                    <button mat-menu-item (click)="changeTimeframe(9999)">
+                        <span>Lifetime</span>
+                    </button>
+                </mat-menu>                  
+            </span>
+        </div>
+
+        <div class="chart-container">
+            <highcharts-chart 
+              [Highcharts]="Highcharts"
+              [options]="ordersChartOptions"
+                [callbackFunction]="saveOrdersInstance" 
+                [oneToOne]="true"
+                [(update)]="updateOrdersFlag"
+              style="width: 100%; height: 400px; display: block;"
+            ></highcharts-chart>
+        </div>
+    </mat-card>
+    
+    
+    
+    
+    
+</div>    
+        
+        
+
+
+
+    
+    
+<div class="small-chart-row" fxLayout="row">
+
+    
+    <mat-card class="chart-card standard-card" fxFlex="66" fxLayout="row" >   
+        <div fxFlex="50">
+            <div class="chart-header" fxLayout="row">
+                <div class="chart-title" fxLayout="column">
+                    <h3>Recent Orders</h3>
+                    <p class="subtitle">The latest orders are below</p>  
+                </div>
+                <span fxFlex></span>
+            </div> 
+
+            <mat-nav-list>
+                <a mat-list-item *ngFor="let order of orders | slice:0:5; let lastItem = last;" [routerLink]="['/orders/' + order.id]" >
+                    <mat-icon matListItemIcon>fact_check</mat-icon>
+                    <h4 matListItemTitle>Order #{{order.id}}</h4>
+                    <p matListItemLine>
+                        Submitted by {{order.user ? (order.user.business_name ? order.user.business_name : order.user.name) : "a user"}} at {{formatDate(order.created_at)}}
+                    </p>
+                    <button mat-icon-button matListItemMeta [routerLink]="['/orders/' + order.id]">
+                       <mat-icon>keyboard_arrow_right</mat-icon>
+                    </button>
+                    <mat-divider [inset]="true" *ngIf="!lastItem"></mat-divider>   
+                </a>       
+            </mat-nav-list>
+        </div>
+        <div fxFlex="50">
+            <mat-nav-list>
+                <a mat-list-item *ngFor="let order of orders | slice:5:10; let lastItem = last;" [routerLink]="['/orders/' + order.id]" >
+                    <mat-icon matListItemIcon>fact_check</mat-icon>
+                    <h4 matListItemTitle>Order #{{order.id}}</h4>
+                    <p matListItemLine>
+                        Submitted by {{order.user ? (order.user.business_name ? order.user.business_name : order.user.name) : "a user"}} at {{formatDate(order.created_at)}}
+                    </p>
+                    <button mat-icon-button matListItemMeta [routerLink]="['/orders/' + order.id]">
+                       <mat-icon>keyboard_arrow_right</mat-icon>
+                    </button>
+                    <mat-divider [inset]="true" *ngIf="!lastItem"></mat-divider>
+                </a>   
+                
+                <a mat-list-item [routerLink]="['/orders']">
+                   <mat-icon matListItemIcon>fact_check</mat-icon>
+                    <h4 matListItemTitle>View all orders</h4>
+                    <p matListItemLine>
+                        Click here to see a list of all orders
+                    </p>                    
+                    <button mat-icon-button matListItemMeta [routerLink]="['/orders']">
+                       <mat-icon>keyboard_arrow_right</mat-icon>
+                    </button>  
+                </a>                   
+            </mat-nav-list>
+        </div>        
+    </mat-card> 
+    
+    
+    <mat-card class="chart-card standard-card" fxFlex="33">   
+
+            <div class="chart-header" fxLayout="row">
+                <div class="chart-title" fxLayout="column">
+                    <h3>Recent Users</h3>
+                    <p class="subtitle">The most recent signed up users</p>  
+                </div>
+                <span fxFlex></span>
+            </div> 
+
+            <mat-nav-list>
+                <a mat-list-item *ngFor="let user of users; let lastItem = last;"  [routerLink]="['/users']">
+                    <mat-icon matListItemIcon>person</mat-icon>
+                    <h4 matListItemTitle>Taylor Hamling</h4>
+                    <p matListItemLine>
+                        Created {{formatDate(user.created_at)}}
+                    </p>
+                    <button mat-icon-button matListItemMeta [routerLink]="['/users']">
+                       <mat-icon>keyboard_arrow_right</mat-icon>
+                    </button> 
+                    <mat-divider [inset]="true"></mat-divider>
+                </a> 
+                <a mat-list-item [routerLink]="['/users']">
+                   <mat-icon matListItemIcon>supervisor_account</mat-icon>
+                    <h4 matListItemTitle>View all users</h4>
+                    <p matListItemLine>
+                        Click here to see a list of all users
+                    </p>                    
+                    <button mat-icon-button matListItemMeta [routerLink]="['/users']">
+                       <mat-icon>keyboard_arrow_right</mat-icon>
+                    </button>  
+                </a>                 
+            </mat-nav-list>
+    </mat-card>     
+    
+    
+</div>

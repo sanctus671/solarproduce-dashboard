@@ -1,0 +1,143 @@
+<div class="module-actions">
+    <button mat-flat-button color="secondary" [routerLink]="['/users']"><mat-icon>arrow_back</mat-icon> All Users</button>
+    <button mat-flat-button color="primary" class="secondary-action" (click)="editUser()" ><mat-icon>edit</mat-icon> Edit</button>
+</div>
+
+
+    
+<div class="module-loading" *ngIf="loading">
+    <mat-spinner diameter="40"></mat-spinner>
+</div> 
+
+<div  *ngIf="!loading">
+    
+    <mat-card class="module-data">        
+        <div>
+            <div class="module-data__field" *ngFor="let field of getFields()">
+                <span class="module-data__field__name">{{formatFieldName(field)}}: </span>
+                <span class="module-data__field__value">{{field === "created_at" || field === "updated_at" ? formatDate(user[field]) : user[field]}}</span>
+            </div>
+        </div>
+
+    </mat-card>
+    
+    
+    <mat-card class="module-data module-data--projects">        
+     
+
+        <h3>{{user.name ? user.name : ("User " + user.id)}}'s Locations</h3>
+        <p class="subtitle">Related user locations</p>          
+        
+        <div class="module-data__current-projects current-projects">
+            
+            <div class="current-projects__header">
+                <div class="current-projects__header__item">Name</div>
+                <div class="current-projects__header__item">Address</div>
+                <div class="current-projects__header__item">Coordinates</div>
+                <div class="current-projects__header__item">Added At</div>
+            </div>
+            
+            
+            <div class="current-projects__header__projects">
+                <div class="current-projects__header__projects__project">
+                    <div class="current-projects__header__projects__project__item current-projects__header__projects__project__item--name">My Location</div>
+                    <div class="current-projects__header__projects__project__item">123 Test Street</div>
+                    <div class="current-projects__header__projects__project__item">250, 210</div>
+                    <div class="current-projects__header__projects__project__item">Fri, 8th September 2023</div>
+                </div>
+                
+                <div class="current-projects__header__projects__project">
+                    <div class="current-projects__header__projects__project__item current-projects__header__projects__project__item--name">My Location</div>
+                    <div class="current-projects__header__projects__project__item">123 Test Street</div>
+                    <div class="current-projects__header__projects__project__item">250, 210</div>
+                    <div class="current-projects__header__projects__project__item">Fri, 8th September 2023</div>
+                </div>
+                
+                
+                <div class="current-projects__header__projects__project">
+                    <div class="current-projects__header__projects__project__item current-projects__header__projects__project__item--name">My Location</div>
+                    <div class="current-projects__header__projects__project__item">123 Test Street</div>
+                    <div class="current-projects__header__projects__project__item">250, 210</div>
+                    <div class="current-projects__header__projects__project__item">Fri, 8th September 2023</div>
+                </div>
+                
+                
+                <div class="current-projects__header__projects__project">
+                    <div class="current-projects__header__projects__project__item current-projects__header__projects__project__item--name">My Location</div>
+                    <div class="current-projects__header__projects__project__item">123 Test Street</div>
+                    <div class="current-projects__header__projects__project__item">250, 210</div>
+                    <div class="current-projects__header__projects__project__item">Fri, 8th September 2023</div>
+                </div>
+                
+                
+            </div>             
+            
+            
+        </div>
+
+    </mat-card>    
+    
+    
+    <mat-card class="module-data module-data--penetrations">        
+     
+
+        <h3>{{user.name ? user.name : ("User " + user.id)}}'s Orders</h3>
+        <p class="subtitle">All created orders</p>          
+        
+        <div class="module-data__current-projects current-projects">
+            
+            <div class="current-projects__header">
+                <div class="current-projects__header__item">Order #</div>
+                <div class="current-projects__header__item">Location</div>
+                <div class="current-projects__header__item">Status</div>
+                <div class="current-projects__header__item"># Of Items</div>
+                <div class="current-projects__header__item">Created At</div>
+            </div>
+            
+            
+            <div class="current-projects__header__projects">
+                <div class="current-projects__header__projects__project">
+                    <div class="current-projects__header__projects__project__item current-projects__header__projects__project__item--name">1234</div>
+                    <div class="current-projects__header__projects__project__item">My Location</div>
+                    <div class="current-projects__header__projects__project__item">Pending</div>
+                    <div class="current-projects__header__projects__project__item">10</div>
+                    <div class="current-projects__header__projects__project__item">Fri, 8th September 2023</div>
+                </div>
+                <div class="current-projects__header__projects__project">
+                    <div class="current-projects__header__projects__project__item current-projects__header__projects__project__item--name">1234</div>
+                    <div class="current-projects__header__projects__project__item">My Location</div>
+                    <div class="current-projects__header__projects__project__item">Pending</div>
+                    <div class="current-projects__header__projects__project__item">10</div>
+                    <div class="current-projects__header__projects__project__item">Fri, 8th September 2023</div>
+                </div>
+                <div class="current-projects__header__projects__project">
+                    <div class="current-projects__header__projects__project__item current-projects__header__projects__project__item--name">1234</div>
+                    <div class="current-projects__header__projects__project__item">My Location</div>
+                    <div class="current-projects__header__projects__project__item">Pending</div>
+                    <div class="current-projects__header__projects__project__item">10</div>
+                    <div class="current-projects__header__projects__project__item">Fri, 8th September 2023</div>
+                </div>
+                <div class="current-projects__header__projects__project">
+                    <div class="current-projects__header__projects__project__item current-projects__header__projects__project__item--name">1234</div>
+                    <div class="current-projects__header__projects__project__item">My Location</div>
+                    <div class="current-projects__header__projects__project__item">Pending</div>
+                    <div class="current-projects__header__projects__project__item">10</div>
+                    <div class="current-projects__header__projects__project__item">Fri, 8th September 2023</div>
+                </div>
+            </div>            
+            
+            
+        </div>
+
+    </mat-card>      
+    
+    
+    
+
+    
+</div>
+
+
+
+
+

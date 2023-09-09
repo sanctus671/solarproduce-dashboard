@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>Select Dates</h2>
+<mat-dialog-content>
+
+    <form fxLayout="column">
+        
+        
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker1" placeholder="Start Date" name="startdate" [(ngModel)]="startDate">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>  
+        
+ 
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker2" placeholder="End Date" name="enddate" [(ngModel)]="endDate">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>  
+
+        
+    </form>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+  <button mat-button [mat-dialog-close]="{startDate:startDate, endDate:endDate}" color="primary">Continue</button>
+</mat-dialog-actions>

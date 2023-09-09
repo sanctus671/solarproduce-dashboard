@@ -1,0 +1,56 @@
+<h2 mat-dialog-title>Create User</h2>
+<mat-dialog-content>
+
+    <form fxLayout="column" autocomplete="off">
+        
+        <mat-form-field>
+            <mat-label>Email for login</mat-label>
+            <input  matInput placeholder="Email for login" type="text" name="email" autocomplete="false" [(ngModel)]="newUser.email">
+        </mat-form-field>  
+        
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput type="text" name="name" autocomplete="false" [(ngModel)]="newUser.name">
+        </mat-form-field>
+        
+        <mat-form-field>
+            <mat-label>Business Name</mat-label>
+            <input matInput type="text" name="busines_name" autocomplete="false" [(ngModel)]="newUser.business_name">
+        </mat-form-field>
+        
+        
+        <mat-form-field>
+            <mat-label>Role</mat-label>
+            <mat-select name="permission" [(ngModel)]="newUser.permission">
+                <mat-option  value="user">User</mat-option>
+                <mat-option  value="admin" *ngIf="user.permission === 'admin'">Administrator</mat-option>
+            </mat-select>
+        </mat-form-field> 
+        
+        
+        <mat-form-field>
+            <mat-label>Status</mat-label>
+            <mat-select name="status" [(ngModel)]="newUser.status">
+                <mat-option  value="pending">Pending</mat-option>
+                <mat-option  value="approved">Approved</mat-option>
+            </mat-select>
+        </mat-form-field> 
+        
+    
+        
+        
+<!--        
+        <mat-form-field>
+            <input matInput placeholder="Password for login" type="password" name="new-user-password" autocomplete="false" [(ngModel)]="newUser.password">
+        </mat-form-field>-->
+
+
+
+    </form>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+  <button mat-button (click)="saveUser()" color="primary">Create</button>
+</mat-dialog-actions>

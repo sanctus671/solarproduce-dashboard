@@ -1,0 +1,41 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "src/theme.scss";
+
+body{
+    color: #2A3547;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 18px;
+    font-family: 'Plus Jakarta Sans',sans-serif;
+    margin:0;
+}
+
+@media (prefers-color-scheme: dark) {
+    body{
+        background-color:#000000;
+        color:white;
+    }
+}
+
+.mdc-button{
+    min-height:44px;
+}
+
+.mat-mdc-unelevated-button.mat-primary, .mat-mdc-unelevated-button.mat-accent{
+    --mdc-filled-button-label-text-color:white;
+    --mat-mdc-button-persistent-ripple-color: white;
+}
+
+
+.mat-mdc-list-base {
+    --mdc-list-list-item-label-text-font:  'Plus Jakarta Sans',sans-serif;
+    --mdc-list-list-item-supporting-text-font:  'Plus Jakarta Sans',sans-serif;
+    --mdc-list-list-item-trailing-supporting-text-font:  'Plus Jakarta Sans',sans-serif;
+}
+
+.mat-mdc-menu-panel.mat-mdc-menu-panel, .mdc-menu-surface{
+    box-shadow: rgba(145, 158, 171, 0.3) 0px 0px 2px 0px, rgba(145, 158, 171, 0.12) 0px 12px 24px -4px;
+        border-radius: 7px;
+}
+

@@ -1,0 +1,81 @@
+<mat-sidenav  class="sidemenu" mode="side" [opened]="sidebarOpened">
+
+    <div class="sidemenu__logo">
+        <img src="assets/condensed-logo.png" />
+    </div>  
+
+    <mat-nav-list class="sidemenu__menu">
+        <a class="sidemenu__menu__item" mat-list-item [routerLink]="['/dashboard']" [routerLinkActive]="['active']">
+            <mat-icon matListItemIcon>dashboard</mat-icon>
+            Dashboard
+        </a>
+
+        <a class="sidemenu__menu__item" mat-list-item [routerLink]="['/products']" [routerLinkActive]="['active']">
+            <mat-icon matListItemIcon>nutrition</mat-icon>
+            Products
+        </a>  
+
+        <a class="sidemenu__menu__item" mat-list-item [routerLink]="['/orders']" [routerLinkActive]="['active']">
+            <mat-icon matListItemIcon>list_alt</mat-icon>
+            Orders
+        </a>  
+
+
+
+        <a class="sidemenu__menu__item" mat-list-item [routerLink]="['/users']" [routerLinkActive]="['active']">
+            <mat-icon matListItemIcon>supervisor_account</mat-icon>
+            Users
+        </a>    
+        
+
+
+        
+    </mat-nav-list>
+
+</mat-sidenav>
+
+
+
+<mat-toolbar class="main-toolbar"  [ngClass]="{'main-toolbar--sidebar-open':sidebarOpened}">
+
+    <button class="main-toolbar__menu-button" mat-icon-button aria-label="Toggle Side Menu" (click)="toggleMenu()">
+      <mat-icon>menu</mat-icon>
+    </button>    
+    
+    
+    <span class="main-toolbar__spacer" fxFlex></span>    
+ 
+    
+    <a  class="main-toolbar__avatar"  [matMenuTriggerFor]="menu" disableRipple="true">
+        
+        <span class="main-toolbar__name" id="account-name" *ngIf="user">{{user.name}}</span>
+        <mat-icon class="main-toolbar__avatar__icon" matRipple>person</mat-icon> 
+        <img *ngIf="user.avatar" [src]="user.avatar" class="main-toolbar__avatar__image" />
+    </a>
+    
+    
+    <mat-menu #menu="matMenu" yPosition="below" [overlapTrigger]="false">
+        <button mat-menu-item [routerLink]="['/account']" [routerLinkActive]="['active']">
+            <mat-icon>settings</mat-icon>
+            <span>Account Settings</span>
+        </button>
+        <button mat-menu-item (click)="logout()">
+            <mat-icon>lock</mat-icon>
+            <span>Logout</span>
+        </button>
+    </mat-menu> 
+    
+    
+    
+</mat-toolbar>
+
+
+
+<mat-sidenav-container class="sidemenu-content">
+ 
+    <mat-sidenav-content class="sidemenu-content__container" [ngClass]="{'sidemenu-content__container--sidebar-open':sidebarOpened}">
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+
+</mat-sidenav-container>
+

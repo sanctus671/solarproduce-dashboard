@@ -1,0 +1,52 @@
+<div class="login-container">
+    
+    <div class="login-container__left">
+        <div class="login-container__left__content">
+            <img src="assets/logo-light.png"/>
+          
+        </div>
+    </div>
+    
+    
+    <div class="login-container__right">
+        
+        <div class="login-container__right__content">
+            <h1>Login</h1>
+            <p>Manage the Solar Produce app products and orders</p>
+            <form fxLayout="column" #form="ngForm" (ngSubmit)="login(form.value)">
+                <mat-form-field appearance="outline">
+                    <mat-icon matPrefix>mail</mat-icon>
+                    <mat-label>Email</mat-label>
+                    <input matInput type="email" name="email" ngModel>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-icon matPrefix>lock</mat-icon>
+                    <mat-label>Password</mat-label>
+                  <input matInput type="password" name="password" ngModel>
+                </mat-form-field>
+
+                <button mat-flat-button color="primary" [disabled]="loading">
+                    Login
+                    <mat-spinner class='button-spinner' diameter="14" mode="indeterminate" color="primary" *ngIf="loading"></mat-spinner>
+                </button>
+
+                <p class="errors" *ngIf="errors.length > 0">
+                    <span *ngFor="let error of errors">{{error}}</span>
+                </p>
+
+                <a routerLink="/forgot-password">Forgot Password</a>
+
+
+
+            </form>    
+        </div>
+        
+<!--         <div class="login-container__right__signup">
+            <p>Don't have an account? <a routerLink="/signup">Sign up</a></p>
+        </div> -->
+        
+    </div>
+    
+  
+</div>

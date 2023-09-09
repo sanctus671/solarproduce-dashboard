@@ -1,0 +1,53 @@
+<div class="login-container">
+    
+    <div class="login-container__back">
+        <a routerLink="/login"><mat-icon>arrow_back</mat-icon> Back to login</a>
+    </div>
+    
+    
+    
+    <mat-card class="login-form">
+        <h2>Create Account</h2>
+        <p>Enter your details below to sign up</p>
+        
+        
+        <form fxLayout="column" #form="ngForm" (ngSubmit)="signup(form.value)">
+            
+            <mat-form-field appearance="outline">
+                <mat-icon matPrefix>person</mat-icon>
+                <mat-label>Your Name</mat-label>
+              <input matInput required type="text" name="name" ngModel>
+            </mat-form-field>            
+            
+            <mat-form-field appearance="outline">
+                <mat-icon matPrefix>mail</mat-icon>
+                <mat-label>Your Email</mat-label>
+              <input matInput required type="email" name="email" ngModel>
+            </mat-form-field>             
+
+            <mat-form-field appearance="outline">
+                <mat-icon matPrefix>lock</mat-icon>
+                <mat-label>Password</mat-label>
+              <input matInput required type="password" name="password" ngModel>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-icon matPrefix>lock</mat-icon>
+                <mat-label>Confirm Password</mat-label>
+              <input matInput required type="password" name="confirm_password" ngModel>
+            </mat-form-field>
+
+            <button mat-flat-button color="primary" [disabled]="loading">
+                Sign Up
+                <mat-spinner class='button-spinner' diameter="14" mode="indeterminate" color="primary" *ngIf="loading"></mat-spinner>
+            </button>
+            
+            <p class="errors" *ngIf="errors.length > 0">
+                <span *ngFor="let error of errors">{{error}}</span>
+            </p>
+            
+            <a routerLink="/login">Login</a>
+
+        </form>
+    </mat-card>
+</div>

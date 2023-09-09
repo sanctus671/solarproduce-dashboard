@@ -1,0 +1,120 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+
+$light-primary-text: white;
+$dark-primary-text: rgba(black, 0.87);
+$sp-green-palette: (
+  50: #00798D,
+  100: #00798D,
+  200: #00798D,
+  300: #00798D,
+  400: #00798D,
+  500: #00798D,
+  600: #00798D,
+  700: #00798D,
+  800: #00798D,
+  900: #00798D,
+  A100: #00798D,
+  A200: #00798D,
+  A400: #00798D,
+  A700: #00798D,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $light-primary-text,
+    400: $light-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+
+
+$sp-red-palette: (
+  50: #C16188,
+  100: #C16188,
+  200: #C16188,
+  300: #C16188,
+  400: #C16188,
+  500: #C16188,
+  600: #C16188,
+  700: #C16188,
+  800: #C16188,
+  900: #C16188,
+  A100: #C16188,
+  A200: #C16188,
+  A400: #C16188,
+  A700: #C16188,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $light-primary-text,
+    400: $light-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+
+
+$custom-typography: mat.define-typography-config(
+  // Specify "Comic Sans" as the default font family for all levels.
+  $font-family: 'Plus Jakarta Sans',
+);
+
+
+
+// Define a light theme
+$light-theme: mat.define-light-theme((
+ color: (
+   primary: mat.define-palette($sp-green-palette),
+   accent: mat.define-palette($sp-red-palette),
+ ),
+  // Only include `typography` and `density` in the default dark theme.
+  typography: $custom-typography,
+  density: 0,
+));
+
+@include mat.button-typography($custom-typography);
+@include mat.input-typography($custom-typography);
+
+
+// Define a dark theme
+$dark-theme: mat.define-dark-theme((
+ color: (
+   primary: mat.define-palette($sp-green-palette),
+   accent: mat.define-palette($sp-red-palette),
+ )
+));
+
+
+// Apply the light theme by default
+@include mat.core-theme($light-theme);
+@include mat.all-component-themes($light-theme);
+
+
+// Apply the light theme only when the user prefers light themes.
+@media (prefers-color-scheme: dark) {
+    @include mat.core-color($dark-theme);
+    @include mat.all-component-themes($dark-theme);
+}
+
+
+
+
