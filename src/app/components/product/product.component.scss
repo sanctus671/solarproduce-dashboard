@@ -1,0 +1,114 @@
+
+.featured-image{
+    text-align:Center;
+    margin-bottom:30px;
+    img{
+        width:300px;
+        max-width:100%;
+    }
+}
+
+.gallery-images{
+    text-align:center;
+    margin-top:30px;
+    img{
+        display:inline-block;
+        margin-right:5px;
+        width:100px;
+    }
+}
+
+.module-actions{
+    margin-left: 25px;
+    margin-top: 20px;
+    margin-right: 25px;
+    min-height:36px;
+        
+    .mdc-button{
+        margin-right:5px;
+    }
+    .mdc-button.secondary-action{
+        float: right;
+    }
+    .mdc-button.secondary-action:nth-child(2),
+    .mdc-button.secondary-action:nth-child(3),
+    .mdc-button.secondary-action:nth-child(4){
+        margin-left:10px;
+    }
+
+}
+
+.module-loading{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: calc(100vh - 300px);   
+    min-height:40px;
+}
+
+
+.module-data{
+    padding: 25px 40px;
+    margin:20px 25px;
+    position:relative;
+    margin-bottom:50px;
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; 
+    box-shadow: rgb(145 158 171 / 30%) 0px 0px 2px 0px,rgb(145 158 171 / 12%) 0px 12px 24px -4px!important;
+    border-radius: 7px;
+    
+
+            
+            
+
+    h3{
+        margin:0px;
+        padding:0px;
+        margin-top:10px;
+    }
+
+    .subtitle{
+        margin:0px;
+        margin-top:10px;
+        opacity:0.5;
+        margin-bottom:25px;
+    } 
+
+
+    .module-data__field{
+        width:29%;
+        width:calc(33% - 60px);
+        padding: 15px 30px;
+        display:inline-block;
+        border-bottom:1px solid #e0e0e0;
+        border-left:1px solid #e0e0e0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+            vertical-align: top;
+        
+        &:nth-child(3n - 2) {
+            border-left:none;
+        }
+        &:nth-last-child(1), &:nth-last-child(2),&:nth-last-child(3){
+            border-bottom:none;
+        }
+        
+        .module-data__field__name{
+            font-weight:bold;
+            text-transform:capitalize;            
+        }
+    } 
+
+
+
+
+    
+    
+}
+
+
+
+a, a:hover, a:focus, a:visited{
+    color: #F16952;
+}

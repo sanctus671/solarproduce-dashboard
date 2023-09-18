@@ -9,6 +9,10 @@ import { ContainerComponent } from './components/container/container.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UsersComponent } from './components/users/users.component';
 import { UserComponent } from './components/user/user.component';
+import { ProductsComponent } from './components/products/products.component';
+import { ProductComponent } from './components/product/product.component';
+import { OrdersComponent } from './components/orders/orders.component';
+import { OrderComponent } from './components/order/order.component';
 import { AccountComponent } from './components/account/account.component';
 
 const routes: Routes = [   
@@ -55,6 +59,22 @@ const routes: Routes = [
         {
           path: 'users/:id',
           component: UserComponent,
+        },   
+        {
+          path: 'products',
+          component: ProductsComponent,
+        },    
+        {
+          path: 'products/:id',
+          component: ProductComponent,
+        },   
+        {
+          path: 'orders',
+          component: OrdersComponent,
+        },    
+        {
+          path: 'orders/:id',
+          component: OrderComponent,
         },   
         {
           path: 'account',

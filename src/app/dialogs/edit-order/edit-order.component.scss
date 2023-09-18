@@ -1,0 +1,16 @@
+.order-items{
+
+    h4{
+        margin-top:0px;
+    }
+
+    .order-items__item{
+        display:flex;
+
+        mat-form-field{
+            margin-right:5px;
+        }
+
+    }
+
+}

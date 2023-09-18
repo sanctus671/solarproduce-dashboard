@@ -1,0 +1,28 @@
+<div class="module-actions">
+    <button mat-flat-button color="secondary" [routerLink]="['/products']"><mat-icon>arrow_back</mat-icon> All Products</button>
+    <button mat-flat-button color="primary" class="secondary-action" (click)="editProduct()" ><mat-icon>edit</mat-icon> Edit</button>
+</div>
+
+
+    
+<div class="module-loading" *ngIf="loading">
+    <mat-spinner diameter="40"></mat-spinner>
+</div> 
+
+<div  *ngIf="!loading">
+    
+    <mat-card class="module-data">    
+        <div class="featured-image"><img [src]="product.featured_image" /></div>    
+        <div>
+            <div class="module-data__field" *ngFor="let field of getFields()">
+                <span class="module-data__field__name">{{formatFieldName(field)}}: </span>
+                <span class="module-data__field__value">{{field === "created_at" || field === "updated_at" ? formatDate(product[field]) : product[field]}}</span>
+            </div>
+        </div>
+        <div class="gallery-images">
+            <img *ngFor="let image of galleryImages" [src]="image" />
+        </div>
+
+    </mat-card>
+
+</div>

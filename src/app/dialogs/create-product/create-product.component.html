@@ -1,0 +1,97 @@
+<h2 mat-dialog-title>Create Product</h2>
+<mat-dialog-content class="create-product">
+
+    <form fxLayout="column" autocomplete="off">
+
+        <div class="create-product__image" [ngStyle]="{'background-image' : 'url(' + newProduct.featured_image + ')'}" (click)="selectFile('imageFile',$event)"></div>
+          <!-- Input for selecting a single image -->
+          <input id="imageFile" name="imageFile" hidden required type="file" (change)="fileChangeListener('featured_image', $event)">        
+        
+
+
+   
+        
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput type="text" name="name" autocomplete="false" [(ngModel)]="newProduct.name">
+        </mat-form-field>
+        
+        <mat-form-field>
+            <mat-label>Price ($)</mat-label>
+            <input matInput type="number" name="price" autocomplete="false" [(ngModel)]="newProduct.price">
+        </mat-form-field>
+        
+        
+        
+        <mat-form-field>
+            <mat-label>Unit</mat-label>
+            <mat-select name="unit" [(ngModel)]="newProduct.unit">
+                <mat-option  value="g">g</mat-option>
+                <mat-option  value="kg">kg</mat-option>
+                <mat-option  value="each">each</mat-option>
+                <mat-option  value="ml">ml</mat-option>
+                <mat-option  value="l">l</mat-option>
+            </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field>
+            <mat-label>Minimum Quantity</mat-label>
+            <input matInput type="number" name="minimum_quantity" autocomplete="false" [(ngModel)]="newProduct.minimum_quantity">
+        </mat-form-field>
+        
+        
+        
+        <mat-form-field>
+            <mat-label>Availability</mat-label>
+            <mat-select name="availability" [(ngModel)]="newProduct.availability">
+                <mat-option  value="available">Available</mat-option>
+                <mat-option  value="unavailable">Unavailable</mat-option>
+            </mat-select>
+        </mat-form-field> 
+        
+        
+        
+        <mat-form-field>
+            <mat-label>Status</mat-label>
+            <mat-select name="status" [(ngModel)]="newProduct.status">
+                <mat-option  value="forsale">For Sale</mat-option>
+                <mat-option  value="special">Special</mat-option>
+                <mat-option  value="featured">Featured</mat-option>
+            </mat-select>
+        </mat-form-field> 
+        
+        
+        
+        <mat-form-field>
+            <mat-label>Categories</mat-label>
+            <mat-select multiple name="categories" [(ngModel)]="newProduct.categories">
+                <mat-option  value="1">Fruits</mat-option>
+                <mat-option  value="2">Vegetables</mat-option>
+                <mat-option  value="3">Herbs and Spices</mat-option>
+                <mat-option  value="4">Specialty Items</mat-option>
+                <mat-option  value="5">Organic and Locally Sourced</mat-option>
+                <mat-option  value="6">Seasonal Specials</mat-option>
+            </mat-select>
+        </mat-form-field>
+        
+    
+        
+        <div class="create-product__images">
+            <!-- Display uploaded images using *ngFor -->
+            <div *ngFor="let image of newProduct.gallery_images; let i = index" class="create-product__image" [ngStyle]="{'background-image' : 'url(' + image + ')'}" (click)="newProduct.gallery_images.splice(1, i)" ></div>
+            <div><a mat-button (click)="selectFile('imageFiles',$event)">Add Gallery Image</a></div>
+          </div>
+          
+          <!-- Input for selecting a single image -->
+          <input id="imageFiles" name="imageFiles" hidden required type="file" (change)="fileChangeListener('gallery_images', $event)">
+
+
+
+    </form>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+  <button mat-button (click)="saveProduct()" color="primary">Create</button>
+</mat-dialog-actions>

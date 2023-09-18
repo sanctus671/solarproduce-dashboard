@@ -1,0 +1,133 @@
+<h2 mat-dialog-title>Edit Order</h2>
+<mat-dialog-content>
+
+    <form fxLayout="column" autocomplete="off">
+
+
+        
+        <mat-form-field>
+            <mat-label>User</mat-label>
+            <mat-select name="user" [(ngModel)]="updateOrder.user_id">
+                <mat-option  value="">None</mat-option>
+                <mat-option *ngFor="let user of users" [value]="user.id">{{user.name}}</mat-option>
+            </mat-select>
+        </mat-form-field> 
+
+
+
+        
+        <mat-form-field>
+            <mat-label>Location</mat-label>
+            <mat-select name="location" [(ngModel)]="updateOrder.location_id">
+                <mat-option  value="">None</mat-option>
+                <mat-option *ngFor="let location of locations" [value]="location.id">{{location.name}}</mat-option>
+            </mat-select>
+        </mat-form-field> 
+
+
+        
+        <mat-form-field>
+            <mat-label>Status</mat-label>
+            <mat-select name="status" [(ngModel)]="updateOrder.status">
+                <mat-option  value="Order Pending">Order Pending</mat-option>
+                <mat-option  value="Order Confirmed">Order Confirmed</mat-option>
+                <mat-option  value="Order Confirmed with Changes">Order Confirmed with Changes</mat-option>
+            </mat-select>
+        </mat-form-field> 
+
+
+        
+        <mat-form-field>
+            <mat-label>Delivery Date</mat-label>
+            <mat-select name="delivery_date" [(ngModel)]="updateOrder.delivery_date">
+                <mat-option  value="Same Day">Same Day</mat-option>
+                <mat-option  value="Next Day">Next Day</mat-option>
+            </mat-select>
+        </mat-form-field>
+         
+        
+        
+
+        <div class="order-items">
+
+            <h4>Order Product Items</h4>
+
+            <div class="order-items__item" *ngFor="let item of updateOrder.order_products;let i = index;">
+
+
+                <mat-form-field>
+                    <mat-label>Product</mat-label>
+                    <mat-select name="product{{i}}" [(ngModel)]="item.product_id" (selectionChange)="productSelected($event, i)">
+                        <mat-option  value="">None</mat-option>
+                        <mat-option *ngFor="let product of products" [value]="product.id">{{product.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+        
+                <mat-form-field>
+                    <mat-label>Unit</mat-label>
+                    <mat-select name="unit{{i}}" [(ngModel)]="item.unit">
+                        <mat-option  value="g">g</mat-option>
+                        <mat-option  value="kg">kg</mat-option>
+                        <mat-option  value="each">each</mat-option>
+                        <mat-option  value="ml">ml</mat-option>
+                        <mat-option  value="l">l</mat-option>
+                    </mat-select>
+                </mat-form-field> 
+
+
+                <mat-form-field>
+                    <mat-label>Quantity</mat-label>
+                    <input  matInput type="number" name="quantity{{i}}" autocomplete="false" [(ngModel)]="item.quantity">
+                </mat-form-field> 
+
+
+                <mat-form-field>
+                    <mat-label>Quantity Supplied</mat-label>
+                    <input  matInput type="number" name="quantity_supplied{{i}}" autocomplete="false" [(ngModel)]="item.quantity_supplied">
+                </mat-form-field>
+
+        
+                <mat-form-field>
+                    <mat-label>Status</mat-label>
+                    <mat-select name="status{{i}}" [(ngModel)]="item.status">
+                        <mat-option  value="Pending">Pending</mat-option>
+                        <mat-option  value="Fulfilled">Fulfilled</mat-option>
+                        <mat-option  value="Partially fulfilled">Partially fulfilled</mat-option>
+                    </mat-select>
+                </mat-form-field> 
+
+
+                <mat-form-field>
+                    <mat-label>Price ($)</mat-label>
+                    <input  matInput type="number" name="price{{i}}" autocomplete="false" [(ngModel)]="item.price">
+                </mat-form-field> 
+
+
+
+            </div>
+            
+
+            <div><a mat-flat-button color="primary" (click)="updateOrder.order_products.push({})">Add Item</a></div>
+
+
+
+        </div>
+
+
+        
+<!--        
+        <mat-form-field>
+            <input matInput placeholder="Password for login" type="password" name="new-order-password" autocomplete="false" [(ngModel)]="updateOrder.password">
+        </mat-form-field>-->
+
+
+
+    </form>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+  <button mat-button (click)="saveOrder()" color="primary">Update</button>
+</mat-dialog-actions>

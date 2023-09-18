@@ -1,0 +1,75 @@
+<div class="module-actions">
+    <button mat-flat-button color="secondary" [routerLink]="['/orders']"><mat-icon>arrow_back</mat-icon> All Orders</button>
+    <button mat-flat-button color="primary" class="secondary-action" (click)="editOrder()" ><mat-icon>edit</mat-icon> Edit</button>
+</div>
+
+
+    
+<div class="module-loading" *ngIf="loading">
+    <mat-spinner diameter="40"></mat-spinner>
+</div> 
+
+<div  *ngIf="!loading">
+    
+    <mat-card class="module-data">        
+        <div>
+            <div class="module-data__field" *ngFor="let field of getFields()">
+                <span class="module-data__field__name">{{formatFieldName(field)}}: </span>
+                <span class="module-data__field__value" *ngIf="field === 'ordered_by'"><a [routerLink]="['/users/' + order.user_id]" target="_blank">{{formatFieldValue(field)}}</a></span>
+                <span class="module-data__field__value" *ngIf="field === 'location'"><a [routerLink]="['/users/' + order.user_id]" target="_blank">{{formatFieldValue(field)}}</a></span>
+                <span class="module-data__field__value" *ngIf="field === 'location_address'"><a [href]="(order.location ? 'http://maps.google.com/?q=' + order.location.address : '')" target="_blank">{{formatFieldValue(field)}}</a></span>
+                <span class="module-data__field__value" *ngIf="field !== 'ordered_by' && field !== 'location' && field !== 'location_address'">{{formatFieldValue(field)}}</span>
+            </div>
+        </div>
+
+    </mat-card>
+
+
+
+    <mat-card class="module-data module-data--projects">        
+     
+
+        <h3>Order Items</h3>
+        <p class="subtitle">View all products purchased for this order</p>          
+        
+        <div class="module-data__current-projects current-projects">
+            
+            <div class="current-projects__header">
+                <div class="current-projects__header__item">Product</div>
+                <div class="current-projects__header__item">Unit</div>
+                <div class="current-projects__header__item">Quantity</div>
+                <div class="current-projects__header__item">Quantity Supplied</div>
+                <div class="current-projects__header__item">Status</div>
+                <div class="current-projects__header__item">Price</div>
+            </div>
+            
+            
+            <div class="current-projects__header__projects">
+                <div class="current-projects__header__projects__project">
+                    <div class="current-projects__header__projects__project__item current-projects__header__projects__project__item--name">Leaf</div>
+                    <div class="current-projects__header__projects__project__item">g</div>
+                    <div class="current-projects__header__projects__project__item">100</div>
+                    <div class="current-projects__header__projects__project__item">100</div>
+                    <div class="current-projects__header__projects__project__item">Fulfilled</div>
+                    <div class="current-projects__header__projects__project__item">$10</div>
+                </div>
+                <div class="current-projects__header__projects__project">
+                    <div class="current-projects__header__projects__project__item current-projects__header__projects__project__item--name">Leaf</div>
+                    <div class="current-projects__header__projects__project__item">g</div>
+                    <div class="current-projects__header__projects__project__item">50</div>
+                    <div class="current-projects__header__projects__project__item">30</div>
+                    <div class="current-projects__header__projects__project__item">Partially Fulfilled</div>
+                    <div class="current-projects__header__projects__project__item">$3</div>
+                </div>
+                
+                
+            </div>             
+            
+            
+        </div>
+
+    </mat-card>  
+
+
+
+</div>

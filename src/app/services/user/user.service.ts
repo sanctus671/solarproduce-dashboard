@@ -65,6 +65,12 @@ export class UserService {
             
         }));
     } 
+    
+    public getLocations(): Observable<any> {
+        return this.http.get( environment.apiUrl + '/locations')
+        .pipe(tap((response) => {
+        }));  
+    }
        
           
     

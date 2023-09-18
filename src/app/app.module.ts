@@ -44,6 +44,16 @@ import { UserComponent } from './components/user/user.component';
 import { CreateUserComponent } from './dialogs/create-user/create-user.component';
 import { EditUserComponent } from './dialogs/edit-user/edit-user.component';
 
+import { ProductsComponent } from './components/products/products.component';
+import { ProductComponent } from './components/product/product.component';
+import { CreateProductComponent } from './dialogs/create-product/create-product.component';
+import { EditProductComponent } from './dialogs/edit-product/edit-product.component';
+
+import { OrdersComponent } from './components/orders/orders.component';
+import { OrderComponent } from './components/order/order.component';
+import { CreateOrderComponent } from './dialogs/create-order/create-order.component';
+import { EditOrderComponent } from './dialogs/edit-order/edit-order.component';
+
 import { ConfirmDeleteComponent } from './dialogs/confirm-delete/confirm-delete.component';
 import { SelectDatesComponent } from './dialogs/select-dates/select-dates.component';
 
@@ -64,6 +74,14 @@ import { MatIconRegistry } from '@angular/material/icon';
         UserComponent,
         CreateUserComponent,
         EditUserComponent,  
+        ProductsComponent,
+        ProductComponent,
+        CreateProductComponent,
+        EditProductComponent,  
+        OrdersComponent,
+        OrderComponent,
+        CreateOrderComponent,
+        EditOrderComponent,  
         ConfirmDeleteComponent,
         SelectDatesComponent,
         LoadingComponent,
@@ -87,7 +105,11 @@ import { MatIconRegistry } from '@angular/material/icon';
   entryComponents:[
         ConfirmDeleteComponent,    
         CreateUserComponent,
-        EditUserComponent,   
+        EditUserComponent,     
+        CreateProductComponent,
+        EditProductComponent,    
+        CreateOrderComponent,
+        EditOrderComponent,  
         SelectDatesComponent ,       
         LoadingComponent,
   ],
