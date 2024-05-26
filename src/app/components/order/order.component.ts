@@ -83,7 +83,7 @@ export class OrderComponent implements OnInit {
     
     
     public getFields(){
-        return ["order_#", 'ordered_by','location','location_address', 'status','delivery_date', 'created_at', 'updated_at'];
+        return ["order_#",'po_number', 'ordered_by','location','location_address', 'status','delivery_date', 'created_at', 'updated_at'];
     }
     
       

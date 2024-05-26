@@ -1,0 +1,50 @@
+<h2 mat-dialog-title>Edit Location</h2>
+<mat-dialog-content class="create-location">
+
+    <form fxLayout="column" autocomplete="off">
+
+
+   
+        
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput type="text" name="name" autocomplete="false" [(ngModel)]="updateLocation.name">
+        </mat-form-field>
+
+
+
+   
+        
+        <mat-form-field>
+            <mat-label>Address</mat-label>
+            <input matInput type="text" name="address" autocomplete="false" [(ngModel)]="updateLocation.address">
+        </mat-form-field>
+
+
+
+   
+        
+        <mat-form-field>
+            <mat-label>Latitude</mat-label>
+            <input matInput type="number" name="latitude" autocomplete="false" [(ngModel)]="updateLocation.latitude">
+        </mat-form-field>
+
+
+
+   
+        
+        <mat-form-field>
+            <mat-label>Longitude</mat-label>
+            <input matInput type="text" name="longitude" autocomplete="false" [(ngModel)]="updateLocation.longitude">
+        </mat-form-field>
+
+        
+
+    </form>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+  <button mat-button (click)="saveLocation()" color="primary">Save</button>
+</mat-dialog-actions>

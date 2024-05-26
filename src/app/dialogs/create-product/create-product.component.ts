@@ -10,6 +10,7 @@ import {AuthenticationService} from '../../services/authentication/authenticatio
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { UploadsService } from 'src/app/services/uploads/uploads.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 export interface Project {
   name: string;
@@ -27,18 +28,42 @@ export class CreateProductComponent  implements OnInit{
     public user: any;
     public newProduct: any;
 
+    public users:Array<any>;
+    public customerPrices:any;
+
+    public showCustomerPrices:boolean;
 
 
     constructor(public dialogRef: MatDialogRef<CreateProductComponent>, @Inject(MAT_DIALOG_DATA) public data: any,    
                 private snackBar: MatSnackBar, private productService: ProductService, public auth: AuthenticationService, 
-                private uploadsService: UploadsService ) {
+                private uploadsService: UploadsService, public userService: UserService ) {
                 
-        this.newProduct = {gallery_images: [], categories: []};
+        this.newProduct = {gallery_images: [], categories: [], public:"1"};
+        this.customerPrices = [];
 
         this.user = {};
         this.auth.getUserData().toPromise().then((data: any) => {
             this.user = data;
         });
+
+        this.users = [];
+        this.userService.getUsers({page:1, limit:999, search:"", order:"", order_by:""}).toPromise().then((data) => {
+            console.log(data);
+            let users = data.data;
+
+            this.users = users;
+
+            for (let user of users){
+                this.customerPrices[user.id] = {user_id:user.id, name: user.name, price:""};
+            }
+
+
+        }).catch(() => {
+        })
+
+
+
+
     }
 
     ngOnInit() {}
@@ -49,6 +74,8 @@ export class CreateProductComponent  implements OnInit{
         let saveProduct:any = {};
         Object.assign(saveProduct, this.newProduct);
         saveProduct.gallery_images = JSON.stringify(this.newProduct.gallery_images);
+        saveProduct.categories = JSON.stringify(this.newProduct.categories);
+        saveProduct.user_prices = JSON.stringify(this.customerPrices);
         
         this.dialogRef.close({product: saveProduct});
         

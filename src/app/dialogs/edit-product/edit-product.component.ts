@@ -10,6 +10,7 @@ import {AuthenticationService} from '../../services/authentication/authenticatio
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { UploadsService } from 'src/app/services/uploads/uploads.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 export interface Project {
   name: string;
@@ -27,29 +28,64 @@ export class EditProductComponent  implements OnInit{
     public user: any;
     public updateProduct: any;
 
+    public users:Array<any>;
+    public customerPrices:any;
+
+    public showCustomerPrices:boolean;
+
     constructor(public dialogRef: MatDialogRef<EditProductComponent>, @Inject(MAT_DIALOG_DATA) public data: any,    
                 private snackBar: MatSnackBar, private productService: ProductService, public auth: AuthenticationService, 
-                private uploadsService: UploadsService ) {
+                private uploadsService: UploadsService, private userService: UserService ) {
                 
         let product = data.product;    
+
+        console.log(product);
+        
         
         if (product.gallery_images){
             product.gallery_images = JSON.parse(product.gallery_images);
         }
-
-        product.categories = [];
-        if (product.product_categories){
-            for (let category of product.product_categories){
-                product.categories.push( "" + category.category_id);
-            }
+        else{
+            product.gallery_images = [];
         }
+        
+        if (product.categories){
+            product.categories = JSON.parse(product.categories);
+        }
+        else{
+            product.categories = [];
+        }
+        this.customerPrices = product.user_prices ? JSON.parse(product.user_prices) : {};
+
+        product.public  = product.public === 1 ? "1" : "0";
+
 
         this.updateProduct = product;
+
+
 
         this.user = {};
         this.auth.getUserData().toPromise().then((data: any) => {
             this.user = data;
         });
+
+        this.users = [];
+        this.userService.getUsers({page:1, limit:999, search:"", order:"", order_by:""}).toPromise().then((data) => {
+            console.log(data);
+            let users = data.data;
+
+            this.users = users;
+
+            for (let user of users){
+                if (!this.customerPrices[user.id]){
+                    this.customerPrices[user.id] = {user_id:user.id, name: user.name, price:""};
+                }
+                
+            }
+
+
+        }).catch(() => {
+        })
     }
 
     ngOnInit() {}
@@ -60,6 +96,8 @@ export class EditProductComponent  implements OnInit{
         let saveProduct:any = {};
         Object.assign(saveProduct, this.updateProduct);
         saveProduct.gallery_images = JSON.stringify(this.updateProduct.gallery_images);
+        saveProduct.categories = JSON.stringify(this.updateProduct.categories);
+        saveProduct.user_prices = JSON.stringify(this.customerPrices);
         
         this.dialogRef.close({product: saveProduct});
         

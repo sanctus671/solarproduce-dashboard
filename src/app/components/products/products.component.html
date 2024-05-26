@@ -1,5 +1,6 @@
 <div class="module-actions">
     <button mat-flat-button color="primary" (click)="addNew()"><mat-icon>add_circle</mat-icon> Add New Product</button>
+    <button mat-flat-button color="accent" (click)="editProducts()"><mat-icon>sell</mat-icon> Edit Product Prices</button>
 
     
     <div class="module-actions__filters"> 
@@ -47,11 +48,14 @@
                     </span>
 
                     <span *ngIf="field === 'name'">
-                        <a [routerLink]="['/products/' + element['id']]">{{element["name"] ? (element["name"]) : ("Product " + element['id'])}}</a>
+                        <a [routerLink]="['/products/' + element['id']]">{{element["name"] ? (element["name"]) : ("Product " + element['id'])}} {{element["product_code"] ? "(" + element["product_code"] + ")" : ""}}</a>
                     </span>
                     <span *ngIf="field === 'price'" class="email" >
-                        ${{element[field]}}{{element['unit'] ? "/" + element['unit'] : ""}}
-                    </span>                
+                        ${{element[field] | number : '1.2-2'}}{{element['unit'] ? "/" + element['unit'] : ""}}
+                    </span>   
+                    <span *ngIf="field === 'visibility'" >
+                        {{element['public'] === 1 ? "Public" : "Private"}}
+                    </span>             
                     
                     <span *ngIf="field === 'created_at' || field === 'updated_at' || field === 'deleted_at'">
                         {{formatDate(element[field])}}
@@ -59,7 +63,7 @@
   
                     
                     
-                    <span *ngIf="field !== 'options' && field !== 'price' && field !== 'name' 
+                    <span *ngIf="field !== 'options' && field !== 'price' && field !== 'name'   && field !== 'visibility'
                         && field !== 'created_at' && field !== 'updated_at' && field !== 'deleted_at'">
                         {{element[field]}}
                     </span>

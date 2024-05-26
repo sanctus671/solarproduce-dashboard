@@ -54,6 +54,12 @@
         margin-bottom:25px;
     } 
 
+    .add-button{
+        position: absolute;
+        right: 30px;
+        top: 30px;
+    }
+
 
     .module-data__field{
         width:29%;
@@ -109,6 +115,8 @@
                 border-bottom:1px solid #e0e0e0;
                 padding: 20px 30px;
                 margin-top: 0px;
+                text-decoration: none;
+
                 
                 &:last-child{
                     border-bottom:none;
@@ -117,6 +125,19 @@
                 .current-projects__header__projects__project__item{
                     width:25%;
                     color:#9e9e9e;
+                    position:relative;
+
+                    button{
+                        position: absolute;
+                        top: -12px;
+                    }
+
+                    .edit-button{
+                        color:#00798d;
+                        font-weight:500;
+                    }
+
+
                     &.current-projects__header__projects__project__item--name{
                         color:#2A3547;
                         font-weight:600;
@@ -133,6 +154,14 @@
 
                     }
 
+
+                    &.current-projects__header__projects__project--default{
+
+                        .current-projects__header__projects__project__item.current-projects__header__projects__project__item--name{
+                            color:#00798d;
+                        }
+
+                    }
 
             }
 

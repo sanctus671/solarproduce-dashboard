@@ -15,37 +15,81 @@
             <mat-label>Name</mat-label>
             <input matInput type="text" name="name" autocomplete="false" [(ngModel)]="newProduct.name">
         </mat-form-field>
+
+
+        
+        
         
         <mat-form-field>
-            <mat-label>Price ($)</mat-label>
+            <mat-label>Visibility</mat-label>
+            <mat-select name="public" [(ngModel)]="newProduct.public">
+                <mat-option  value="1">Public</mat-option>
+                <mat-option  value="0">Private</mat-option>
+            </mat-select>
+        </mat-form-field>         
+
+        
+        
+        <mat-form-field>
+            <mat-label>Product Code</mat-label>
+            <input matInput type="text" name="product_code" autocomplete="false" [(ngModel)]="newProduct.product_code">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Base Price ($)</mat-label>
             <input matInput type="number" name="price" autocomplete="false" [(ngModel)]="newProduct.price">
         </mat-form-field>
+
+ <!--        <div class="create-product__customer-prices-toggle">
+            <a (click)="showCustomerPrices = !showCustomerPrices" mat-button color="primary">
+                Customer prices 
+                <mat-icon>{{showCustomerPrices ? 'expand_less' : 'expand_more'}}</mat-icon>
+            </a>
+        </div>
+
+        <div class="create-product__customer-prices" *ngIf="showCustomerPrices">
+            <div class="create-product__customer-prices__price" *ngFor="let user of users">
+                <div class="create-product__customer-prices__price__name">
+                    {{customerPrices[user.id].name}}
+                </div>
+
+                <mat-form-field class="create-product__customer-prices__price__price">
+                    <mat-label>Price ($)</mat-label>
+                    <input matInput type="number" name="customer-price{{customerPrices[user.id].user_id}}" autocomplete="false" [(ngModel)]="customerPrices[user.id].price">
+                </mat-form-field>
+              
+            </div>
+
+
+        </div>
         
-        
+         -->
         
         <mat-form-field>
             <mat-label>Unit</mat-label>
             <mat-select name="unit" [(ngModel)]="newProduct.unit">
-                <mat-option  value="g">g</mat-option>
-                <mat-option  value="kg">kg</mat-option>
-                <mat-option  value="each">each</mat-option>
-                <mat-option  value="ml">ml</mat-option>
-                <mat-option  value="l">l</mat-option>
+                <mat-option  value="crate">Crate</mat-option>
+                <mat-option  value="kg">Kg</mat-option>
             </mat-select>
         </mat-form-field>
-        
+       
         <mat-form-field>
             <mat-label>Minimum Quantity</mat-label>
             <input matInput type="number" name="minimum_quantity" autocomplete="false" [(ngModel)]="newProduct.minimum_quantity">
         </mat-form-field>
         
-        
+        <mat-form-field>
+            <mat-label>Default Quantity</mat-label>
+            <input matInput type="number" name="default_quantity" autocomplete="false" [(ngModel)]="newProduct.default_quantity">
+        </mat-form-field>        
         
         <mat-form-field>
             <mat-label>Availability</mat-label>
             <mat-select name="availability" [(ngModel)]="newProduct.availability">
-                <mat-option  value="available">Available</mat-option>
-                <mat-option  value="unavailable">Unavailable</mat-option>
+                <mat-option  value="Good Supply">Good Supply</mat-option>
+                <mat-option  value="Moderate Supply">Moderate Supply</mat-option>
+                <mat-option  value="Limited Supply">Limited Supply</mat-option>
+                <mat-option  value="Not Available">Not Available</mat-option>
             </mat-select>
         </mat-form-field> 
         
@@ -54,29 +98,36 @@
         <mat-form-field>
             <mat-label>Status</mat-label>
             <mat-select name="status" [(ngModel)]="newProduct.status">
-                <mat-option  value="forsale">For Sale</mat-option>
-                <mat-option  value="special">Special</mat-option>
-                <mat-option  value="featured">Featured</mat-option>
+                <mat-option  value="">None</mat-option>
+                <mat-option  value="special">On Special</mat-option>
             </mat-select>
         </mat-form-field> 
         
         
-        
-        <mat-form-field>
+   <mat-form-field>
             <mat-label>Categories</mat-label>
             <mat-select multiple name="categories" [(ngModel)]="newProduct.categories">
-                <mat-option  value="1">Fruits</mat-option>
-                <mat-option  value="2">Vegetables</mat-option>
-                <mat-option  value="3">Herbs and Spices</mat-option>
-                <mat-option  value="4">Specialty Items</mat-option>
-                <mat-option  value="5">Organic and Locally Sourced</mat-option>
-                <mat-option  value="6">Seasonal Specials</mat-option>
+                <mat-option value="Cauliflower">Cauliflower</mat-option>
+                <mat-option value="Celery">Celery</mat-option>
+                <mat-option value="Leeks">Leeks</mat-option>
+                <mat-option value="Lettuce">Lettuce</mat-option>
+                <mat-option value="Large cos">Large cos</mat-option>
+                <mat-option value="Baby cos">Baby cos</mat-option>
+                <mat-option value="Fancy lettuce">Fancy lettuce</mat-option>
             </mat-select>
         </mat-form-field>
+
+
+        <mat-form-field>
+            <mat-label>Description</mat-label>
+            <textarea matInput name="description" autocomplete="false" [(ngModel)]="newProduct.description"></textarea>
+        </mat-form-field>
+
+
         
     
         
-        <div class="create-product__images">
+        <div class="create-product__images" style="display:none;">
             <!-- Display uploaded images using *ngFor -->
             <div *ngFor="let image of newProduct.gallery_images; let i = index" class="create-product__image" [ngStyle]="{'background-image' : 'url(' + image + ')'}" (click)="newProduct.gallery_images.splice(1, i)" ></div>
             <div><a mat-button (click)="selectFile('imageFiles',$event)">Add Gallery Image</a></div>

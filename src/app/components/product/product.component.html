@@ -16,7 +16,7 @@
         <div>
             <div class="module-data__field" *ngFor="let field of getFields()">
                 <span class="module-data__field__name">{{formatFieldName(field)}}: </span>
-                <span class="module-data__field__value">{{field === "created_at" || field === "updated_at" ? formatDate(product[field]) : product[field]}}</span>
+                <span class="module-data__field__value">{{formatFieldValue(field)}}</span>
             </div>
         </div>
         <div class="gallery-images">

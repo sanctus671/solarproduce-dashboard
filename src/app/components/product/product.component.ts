@@ -49,6 +49,11 @@ export class ProductComponent implements OnInit {
 
             this.galleryImages = JSON.parse(this.product.gallery_images);
 
+            if (this.product.categories){
+                this.product.added_categories = JSON.parse(this.product.categories).toString();
+            }
+            
+
             this.loading = false;
         }).catch(() => {
             this.loading = false;
@@ -88,9 +93,29 @@ export class ProductComponent implements OnInit {
     
     
     public getFields(){
-        return ["id", 'name','price', 'unit','minimum_quantity', 'availability','status', 'created_at'];
+        return ["id", 'name','price', 'unit','minimum_quantity', 'availability','status','added_categories', 'created_at'];
     }
+
+    public formatFieldValue(field:string){
+        if (field === "created_at" || field === "updated_at"){
+            return this.formatDate(this.product[field]);
+        }
+        else if (field === "price"){
+            return this.formatPrice(this.product["price"]);
+        }
+        else if (field === "status"){
+            return this.product["status"] === "special" ? "On special" : "Not on special"
+        }
+        else{
+            return this.product[field];
+        }
+    }
+
     
+
+    private formatPrice(price: number): string {
+        return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(price);
+    }    
       
       
     public formatFieldName(field){

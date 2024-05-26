@@ -48,4 +48,34 @@
 
     }
 
+    .create-product__customer-prices-toggle{
+        margin-bottom: 5px;
+        margin-top: -15px;
+    }
+
+    .create-product__customer-prices{
+        background-color: #fdfdfd;
+        border: 1px solid #8e8e8e;
+        padding: 30px;
+        padding-bottom: 10px;
+        border-radius: 6px;
+        margin-bottom: 20px;
+
+        .create-product__customer-prices__price__name{
+            font-weight: bold;
+            padding-right: 15px;
+            padding-bottom: 20px;
+        }
+
+        .create-product__customer-prices__price{
+            display:flex;
+            align-items: center;
+
+            mat-form-field{
+                flex:1;
+            }
+        }
+    }
+
+
 }

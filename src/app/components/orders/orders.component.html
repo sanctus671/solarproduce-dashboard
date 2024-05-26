@@ -1,6 +1,6 @@
 <div class="module-actions">
     <button mat-flat-button color="primary" (click)="addNew()"><mat-icon>add_circle</mat-icon> Add New Order</button>
-    <button mat-flat-button color="accent" (click)="addNew()"><mat-icon>download</mat-icon> Export Daily Orders</button>
+    <button mat-flat-button color="accent" (click)="exportOrders()"><mat-icon>download</mat-icon> Export Daily Orders</button>
     
     <div class="module-actions__filters"> 
            
@@ -50,11 +50,11 @@
                     </span>
 
                     <span *ngIf="field === 'id'">
-                        <a [routerLink]="['/orders/' + element['id']]">Order #{{element['id']}}</a>
+                        <a [routerLink]="['/orders/' + element['id']]">Order #{{element['id']}}{{element['po_number'] ? " (" + element['po_number'] + ")" : ""}}</a>
                     </span>
 
                     <span *ngIf="field === 'ordered_by'">
-                        {{element["user"]["name"]}} {{element["user"]["business_name"] ? "(" + element["user"]["business_name"] + ")" : ""}}
+                        <a [routerLink]="['/users/' + element['user_id']]">{{element["user"] ? element["user"]["name"] : "Unknown"}} {{element["business"] ? "(" + element["business"]["name"] + ")" : ""}}</a>
                     </span>   
 
                     <span *ngIf="field === 'location'">

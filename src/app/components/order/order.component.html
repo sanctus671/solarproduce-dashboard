@@ -26,6 +26,18 @@
 
 
 
+    <mat-card class="module-data module-data--projects" *ngIf="order.notes">        
+     
+
+        <h3>Notes</h3>
+        <p class="subtitle">View notes for this order</p>      
+
+        <p style="margin-top:0px;">{{order.notes}}</p>
+
+    </mat-card>
+
+
+
     <mat-card class="module-data module-data--projects">        
      
 
@@ -45,21 +57,13 @@
             
             
             <div class="current-projects__header__projects">
-                <div class="current-projects__header__projects__project">
-                    <div class="current-projects__header__projects__project__item current-projects__header__projects__project__item--name">Leaf</div>
-                    <div class="current-projects__header__projects__project__item">g</div>
-                    <div class="current-projects__header__projects__project__item">100</div>
-                    <div class="current-projects__header__projects__project__item">100</div>
-                    <div class="current-projects__header__projects__project__item">Fulfilled</div>
-                    <div class="current-projects__header__projects__project__item">$10</div>
-                </div>
-                <div class="current-projects__header__projects__project">
-                    <div class="current-projects__header__projects__project__item current-projects__header__projects__project__item--name">Leaf</div>
-                    <div class="current-projects__header__projects__project__item">g</div>
-                    <div class="current-projects__header__projects__project__item">50</div>
-                    <div class="current-projects__header__projects__project__item">30</div>
-                    <div class="current-projects__header__projects__project__item">Partially Fulfilled</div>
-                    <div class="current-projects__header__projects__project__item">$3</div>
+                <div class="current-projects__header__projects__project" *ngFor="let orderProduct of order.order_products">
+                    <div class="current-projects__header__projects__project__item current-projects__header__projects__project__item--name">{{orderProduct.product ? orderProduct.product.name : "Product " + orderProduct.product_id}}</div>
+                    <div class="current-projects__header__projects__project__item">{{orderProduct.unit}}</div>
+                    <div class="current-projects__header__projects__project__item">{{orderProduct.quantity}}</div>
+                    <div class="current-projects__header__projects__project__item">{{orderProduct.quantity_supplied}}</div>
+                    <div class="current-projects__header__projects__project__item">{{orderProduct.status}}</div>
+                    <div class="current-projects__header__projects__project__item">${{orderProduct.price | number : '1.2-2'}}</div>
                 </div>
                 
                 

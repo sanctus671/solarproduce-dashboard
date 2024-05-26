@@ -14,10 +14,38 @@
         </mat-form-field>
         
         <mat-form-field>
+            <mat-label>Phone</mat-label>
+            <input matInput type="text" name="phone" autocomplete="false" [(ngModel)]="editUser.phone">
+        </mat-form-field>
+        
+<!--         <mat-form-field>
+            <mat-label>Business Name</mat-label>
+            <input matInput type="text" name="business_name" autocomplete="false" [(ngModel)]="editUser.business_name">
+        </mat-form-field> -->
+
+        
+        <mat-form-field>
+            <mat-label>Business</mat-label>
+            <mat-select name="business" [(ngModel)]="editUser.business_id">
+                <mat-option *ngFor="let business of businesses"  [value]="business.id">{{business.name}}</mat-option>
+                <mat-option value="new">Create New</mat-option>
+            </mat-select>
+        </mat-form-field> 
+
+        <mat-form-field *ngIf="editUser.business_id === 'new'">
             <mat-label>Business Name</mat-label>
             <input matInput type="text" name="business_name" autocomplete="false" [(ngModel)]="editUser.business_name">
         </mat-form-field>
+
+
+
         
+        <mat-form-field>
+            <mat-label>Default Location</mat-label>
+            <mat-select name="default_location_id" [(ngModel)]="editUser.default_location_id">
+                <mat-option *ngFor="let location of editUser.locations"  [value]="location.id">{{location.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>         
         
         <mat-form-field>
             <mat-label>Role</mat-label>
@@ -33,6 +61,15 @@
             <mat-select name="status" [(ngModel)]="editUser.status">
                 <mat-option  value="pending">Pending</mat-option>
                 <mat-option  value="approved">Approved</mat-option>
+            </mat-select>
+        </mat-form-field> 
+        
+        
+        <mat-form-field>
+            <mat-label>Same Day Delivery</mat-label>
+            <mat-select name="same_day_delivery" [(ngModel)]="editUser.same_day_delivery">
+                <mat-option  value="1">Enabled</mat-option>
+                <mat-option  value="0">Disabled</mat-option>
             </mat-select>
         </mat-form-field> 
         

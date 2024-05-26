@@ -37,7 +37,7 @@ export class UsersComponent implements OnInit {
         this.loading = true;    
         this.users = {count:50, data: []};
         
-        this.displayedColumns = ['id','name','email', 'role','status', 'created_at', 'updated_at', 'options'];  
+        this.displayedColumns = ['id','name','email', 'permission','status', 'created_at', 'updated_at', 'options'];  
         this.query = {page:1, limit:50, search:"", order:"", order_by:""};        
         
         this.user = {};

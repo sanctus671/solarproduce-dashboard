@@ -16,6 +16,7 @@ import {ProductService} from '../../services/product/product.service';
 import {AuthenticationService} from '../../services/authentication/authentication.service';
 
 import * as moment from 'moment';
+import { EditProductsComponent } from 'src/app/dialogs/edit-products/edit-products.component';
 @Component({
     selector: 'app-products',
     templateUrl: './products.component.html',
@@ -37,8 +38,8 @@ export class ProductsComponent implements OnInit {
         this.loading = true;    
         this.products = {count:50, data: []};
         
-        this.displayedColumns = ['id','name','price', 'availability','status', 'created_at', 'updated_at', 'options'];  
-        this.query = {page:1, limit:50, search:"", order:"", order_by:""};        
+        this.displayedColumns = ['id','name','price','visibility', 'availability','status', 'created_at', 'updated_at', 'options'];  
+        this.query = {page:1, limit:50, search:"", order:"desc", order_by:"created_at"};        
         
         this.user = {};
         this.auth.getUserData().toPromise().then((data:any) => {
@@ -92,6 +93,29 @@ export class ProductsComponent implements OnInit {
         this.query.limit = ev.pageSize;
         this.getProducts();
     }
+
+
+    
+    
+    public editProducts(){
+        
+        let dialogRef = this.dialog.open(EditProductsComponent, {
+          width: '1600px',
+          data: {}
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+
+
+            this.getProducts();
+            
+            if (result){
+                console.log(result);
+
+            }
+        }); 
+              
+    } 
 
 
     

@@ -8,16 +8,43 @@
             <input  matInput placeholder="Email for login" type="text" name="email" autocomplete="false" [(ngModel)]="newUser.email">
         </mat-form-field>  
         
+    
+        
+        <mat-form-field>
+            <input matInput placeholder="Enter password" type="password" name="new-user-password" autocomplete="false" [(ngModel)]="newUser.password">
+        </mat-form-field> 
+        
         <mat-form-field>
             <mat-label>Name</mat-label>
             <input matInput type="text" name="name" autocomplete="false" [(ngModel)]="newUser.name">
         </mat-form-field>
         
         <mat-form-field>
+            <mat-label>Phone</mat-label>
+            <input matInput type="text" name="phone" autocomplete="false" [(ngModel)]="newUser.phone">
+        </mat-form-field>
+<!--         
+        <mat-form-field>
             <mat-label>Business Name</mat-label>
             <input matInput type="text" name="busines_name" autocomplete="false" [(ngModel)]="newUser.business_name">
-        </mat-form-field>
+        </mat-form-field> -->
         
+
+        
+        <mat-form-field>
+            <mat-label>Business</mat-label>
+            <mat-select name="business" [(ngModel)]="newUser.business_id">
+                <mat-option *ngFor="let business of businesses"  [value]="business.id">{{business.name}}</mat-option>
+                <mat-option value="new">Create New</mat-option>
+            </mat-select>
+        </mat-form-field> 
+
+        <mat-form-field *ngIf="newUser.business_id === 'new'">
+            <mat-label>Business Name</mat-label>
+            <input matInput type="text" name="business_name" autocomplete="false" [(ngModel)]="editUser.business_name">
+        </mat-form-field>
+
+
         
         <mat-form-field>
             <mat-label>Role</mat-label>
@@ -33,6 +60,15 @@
             <mat-select name="status" [(ngModel)]="newUser.status">
                 <mat-option  value="pending">Pending</mat-option>
                 <mat-option  value="approved">Approved</mat-option>
+            </mat-select>
+        </mat-form-field> 
+        
+        
+        <mat-form-field>
+            <mat-label>Same Day Delivery</mat-label>
+            <mat-select name="same_day_delivery" [(ngModel)]="newUser.same_day_delivery">
+                <mat-option  value="1">Enabled</mat-option>
+                <mat-option  value="0">Disabled</mat-option>
             </mat-select>
         </mat-form-field> 
         

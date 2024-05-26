@@ -173,8 +173,8 @@ export class OrdersComponent implements OnInit {
         this.orderService.exportOrders(this.query).toPromise().then((result) => {
 
             var link = document.createElement("a");
-            link.download = result.file;
-            link.href = result.file;
+            link.download = result.url;
+            link.href = result.url;
             link.click();  
 
 
@@ -183,6 +183,8 @@ export class OrdersComponent implements OnInit {
               verticalPosition: 'bottom',
               horizontalPosition: 'start'
             });  
+
+            this.getOrders();
 
         });    
           

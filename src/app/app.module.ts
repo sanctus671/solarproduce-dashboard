@@ -54,6 +54,13 @@ import { OrderComponent } from './components/order/order.component';
 import { CreateOrderComponent } from './dialogs/create-order/create-order.component';
 import { EditOrderComponent } from './dialogs/edit-order/edit-order.component';
 
+
+import { EditProductsComponent } from './dialogs/edit-products/edit-products.component';
+import { EditLocationComponent } from './dialogs/edit-location/edit-location.component';
+import { CreateLocationComponent } from './dialogs/create-location/create-location.component';
+import { ProductPricesBusinessComponent } from './dialogs/product-prices-business/product-prices-business.component';
+import { ProductPricesCustomerComponent } from './dialogs/product-prices-customer/product-prices-customer.component';
+
 import { ConfirmDeleteComponent } from './dialogs/confirm-delete/confirm-delete.component';
 import { SelectDatesComponent } from './dialogs/select-dates/select-dates.component';
 
@@ -85,7 +92,12 @@ import { MatIconRegistry } from '@angular/material/icon';
         ConfirmDeleteComponent,
         SelectDatesComponent,
         LoadingComponent,
-        SignupComponent
+        SignupComponent,
+        EditProductsComponent,
+        EditLocationComponent,
+        CreateLocationComponent,
+        ProductPricesBusinessComponent,
+        ProductPricesCustomerComponent
   ],
   imports: [
         BrowserModule,
@@ -112,6 +124,11 @@ import { MatIconRegistry } from '@angular/material/icon';
         EditOrderComponent,  
         SelectDatesComponent ,       
         LoadingComponent,
+        EditProductsComponent,
+        EditLocationComponent,
+        CreateLocationComponent,
+        ProductPricesBusinessComponent,
+        ProductPricesCustomerComponent        
   ],
   providers: [    
     {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},

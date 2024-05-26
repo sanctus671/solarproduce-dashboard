@@ -1,0 +1,42 @@
+
+.business-prices{
+
+        h6, h5{
+            margin:0px;
+            margin-bottom:5px;
+        }
+        .business-prices__row{
+            display:flex;
+            justify-content: space-between;
+
+            mat-form-field{
+                flex:1;
+                margin-right:10px;
+            }
+
+            button{
+                margin-top:10px;
+                margin-left:5px;
+            }
+        }
+
+        .business-prices__price{
+            position:relative;
+        }
+
+    .business-prices__loading{
+        width:100%;
+        height:65vh;
+        display:flex;
+        align-items:center;
+        justify-content: center;
+    }
+
+    .business-prices__new-price{
+        position: absolute;
+        right: 10px;
+        bottom: -5px;
+        font-size: 12px;
+    }
+
+}

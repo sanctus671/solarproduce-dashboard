@@ -38,7 +38,15 @@ export class ProductService {
         .pipe(tap((response) => {
             
         }));
-    }    
+    }       
+    
+    
+    public saveProductPrice(productPrice): Observable<any> {
+        return this.http.post( environment.apiUrl + '/productprices', productPrice)
+        .pipe(tap((response) => {
+            
+        }));
+    } 
     
     public deleteProduct(productId): Observable<any> {
         return this.http.delete( environment.apiUrl + '/products/' + productId)

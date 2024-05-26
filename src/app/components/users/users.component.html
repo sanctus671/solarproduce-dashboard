@@ -4,14 +4,14 @@
     
     <div class="module-actions__filters"> 
            
-        <mat-form-field appearance="outline" class="module-actions__filters__select">
+<!--         <mat-form-field appearance="outline" class="module-actions__filters__select">
             <mat-label>Filter by Role</mat-label>
             <mat-select name="role" [(ngModel)]="query.role" (selectionChange)="getUsers()">
                 <mat-option  value="">All Users</mat-option>
                 <mat-option  value="user">User</mat-option>
                 <mat-option  value="admin" *ngIf="user.permission === 'admin'">Administrator</mat-option>
             </mat-select>
-        </mat-form-field>  
+        </mat-form-field>  --> 
         
         <mat-form-field  appearance="outline">
             <mat-label>Search Users</mat-label>
@@ -55,14 +55,14 @@
                     </span>
 
                     <span *ngIf="field === 'name'">
-                        <a [routerLink]="['/users/' + element['id']]">{{element["name"] ? (element["name"]) : ("User " + element['id'])}}</a>
+                        <a [routerLink]="['/users/' + element['id']]">{{element["name"] ? (element["name"]) : ("User " + element['id'])}} {{element["business"] ? "(" + element["business"]["name"] + ")" : ""}}</a>
                     </span>
 
                     <span *ngIf="field === 'email'" class='email'>
                         {{element[field]}}
                     </span>      
 
-                    <span *ngIf="field === 'role'" >
+                    <span *ngIf="field === 'permission'" >
                         {{element['permission']}}
                     </span>                
                     
@@ -72,7 +72,7 @@
   
                     
                     
-                    <span *ngIf="field !== 'options' && field !== 'email' && field !== 'name' 
+                    <span *ngIf="field !== 'options' && field !== 'email' && field !== 'name' && field !== 'permission' 
                         && field !== 'created_at' && field !== 'updated_at' && field !== 'deleted_at'">
                         {{element[field]}}
                     </span>

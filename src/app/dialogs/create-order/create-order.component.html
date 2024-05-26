@@ -25,6 +25,12 @@
         </mat-form-field> 
 
 
+        <mat-form-field>
+            <mat-label>PO Number</mat-label>
+            <input  matInput type="text" name="po_number" [(ngModel)]="newOrder.po_number">
+        </mat-form-field>         
+
+
         
         <mat-form-field>
             <mat-label>Status</mat-label>
@@ -44,6 +50,11 @@
                 <mat-option  value="Next Day">Next Day</mat-option>
             </mat-select>
         </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Notes</mat-label>
+            <textarea  matInput type="text" name="notes" [(ngModel)]="newOrder.notes"></textarea>
+        </mat-form-field>          
          
         
         
@@ -67,6 +78,7 @@
                 <mat-form-field>
                     <mat-label>Unit</mat-label>
                     <mat-select name="unit{{i}}" [(ngModel)]="item.unit">
+                        <mat-option  value="crate">crate</mat-option>
                         <mat-option  value="g">g</mat-option>
                         <mat-option  value="kg">kg</mat-option>
                         <mat-option  value="each">each</mat-option>

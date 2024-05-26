@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiUrl:"http://websites.localhost/solarproduce/api/public/api"
+    apiUrl:"http://52.64.114.30/api/public/api"
 };

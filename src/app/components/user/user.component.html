@@ -15,7 +15,7 @@
         <div>
             <div class="module-data__field" *ngFor="let field of getFields()">
                 <span class="module-data__field__name">{{formatFieldName(field)}}: </span>
-                <span class="module-data__field__value">{{field === "created_at" || field === "updated_at" ? formatDate(user[field]) : user[field]}}</span>
+                <span class="module-data__field__value">{{getFieldValue(field)}}</span>
             </div>
         </div>
 
@@ -26,7 +26,9 @@
      
 
         <h3>{{user.name ? user.name : ("User " + user.id)}}'s Locations</h3>
-        <p class="subtitle">Related user locations</p>          
+        <p class="subtitle">Related user locations</p>  
+        
+        <button mat-flat-button color="primary" class="add-button" (click)="addLocation()" ><mat-icon>edit</mat-icon> Add New Location</button>
         
         <div class="module-data__current-projects current-projects">
             
@@ -35,40 +37,19 @@
                 <div class="current-projects__header__item">Address</div>
                 <div class="current-projects__header__item">Coordinates</div>
                 <div class="current-projects__header__item">Added At</div>
+                <div class="current-projects__header__item"></div>
             </div>
             
             
-            <div class="current-projects__header__projects">
-                <div class="current-projects__header__projects__project">
-                    <div class="current-projects__header__projects__project__item current-projects__header__projects__project__item--name">My Location</div>
-                    <div class="current-projects__header__projects__project__item">123 Test Street</div>
-                    <div class="current-projects__header__projects__project__item">250, 210</div>
-                    <div class="current-projects__header__projects__project__item">Fri, 8th September 2023</div>
+            <div class="current-projects__header__projects" *ngFor="let location of user.locations">
+                <div class="current-projects__header__projects__project" (click)="editLocation(location)"
+                [ngClass]="{'current-projects__header__projects__project--default' : location.id === user.default_location_id}">
+                    <div class="current-projects__header__projects__project__item current-projects__header__projects__project__item--name">{{location.name}}</div>
+                    <div class="current-projects__header__projects__project__item">{{location.address}}</div>
+                    <div class="current-projects__header__projects__project__item">{{location.latitude && location.longitude ? (location.latitude + ", " + location.longitude) : ""}} </div>
+                    <div class="current-projects__header__projects__project__item">{{formatDate(location.created_at)}}</div>
+                    <div class="current-projects__header__projects__project__item"><span class="edit-button">Edit Location</span></div>
                 </div>
-                
-                <div class="current-projects__header__projects__project">
-                    <div class="current-projects__header__projects__project__item current-projects__header__projects__project__item--name">My Location</div>
-                    <div class="current-projects__header__projects__project__item">123 Test Street</div>
-                    <div class="current-projects__header__projects__project__item">250, 210</div>
-                    <div class="current-projects__header__projects__project__item">Fri, 8th September 2023</div>
-                </div>
-                
-                
-                <div class="current-projects__header__projects__project">
-                    <div class="current-projects__header__projects__project__item current-projects__header__projects__project__item--name">My Location</div>
-                    <div class="current-projects__header__projects__project__item">123 Test Street</div>
-                    <div class="current-projects__header__projects__project__item">250, 210</div>
-                    <div class="current-projects__header__projects__project__item">Fri, 8th September 2023</div>
-                </div>
-                
-                
-                <div class="current-projects__header__projects__project">
-                    <div class="current-projects__header__projects__project__item current-projects__header__projects__project__item--name">My Location</div>
-                    <div class="current-projects__header__projects__project__item">123 Test Street</div>
-                    <div class="current-projects__header__projects__project__item">250, 210</div>
-                    <div class="current-projects__header__projects__project__item">Fri, 8th September 2023</div>
-                </div>
-                
                 
             </div>             
             
@@ -78,7 +59,7 @@
     </mat-card>    
     
     
-    <mat-card class="module-data module-data--penetrations">        
+    <mat-card class="module-data module-data--penetrations" *ngIf="user.orders && user.orders.length > 0">        
      
 
         <h3>{{user.name ? user.name : ("User " + user.id)}}'s Orders</h3>
@@ -96,34 +77,13 @@
             
             
             <div class="current-projects__header__projects">
-                <div class="current-projects__header__projects__project">
-                    <div class="current-projects__header__projects__project__item current-projects__header__projects__project__item--name">1234</div>
-                    <div class="current-projects__header__projects__project__item">My Location</div>
-                    <div class="current-projects__header__projects__project__item">Pending</div>
-                    <div class="current-projects__header__projects__project__item">10</div>
-                    <div class="current-projects__header__projects__project__item">Fri, 8th September 2023</div>
-                </div>
-                <div class="current-projects__header__projects__project">
-                    <div class="current-projects__header__projects__project__item current-projects__header__projects__project__item--name">1234</div>
-                    <div class="current-projects__header__projects__project__item">My Location</div>
-                    <div class="current-projects__header__projects__project__item">Pending</div>
-                    <div class="current-projects__header__projects__project__item">10</div>
-                    <div class="current-projects__header__projects__project__item">Fri, 8th September 2023</div>
-                </div>
-                <div class="current-projects__header__projects__project">
-                    <div class="current-projects__header__projects__project__item current-projects__header__projects__project__item--name">1234</div>
-                    <div class="current-projects__header__projects__project__item">My Location</div>
-                    <div class="current-projects__header__projects__project__item">Pending</div>
-                    <div class="current-projects__header__projects__project__item">10</div>
-                    <div class="current-projects__header__projects__project__item">Fri, 8th September 2023</div>
-                </div>
-                <div class="current-projects__header__projects__project">
-                    <div class="current-projects__header__projects__project__item current-projects__header__projects__project__item--name">1234</div>
-                    <div class="current-projects__header__projects__project__item">My Location</div>
-                    <div class="current-projects__header__projects__project__item">Pending</div>
-                    <div class="current-projects__header__projects__project__item">10</div>
-                    <div class="current-projects__header__projects__project__item">Fri, 8th September 2023</div>
-                </div>
+                <a class="current-projects__header__projects__project" *ngFor="let order of user.orders"  [routerLink]="['/orders/' + order.id]" >
+                    <div class="current-projects__header__projects__project__item current-projects__header__projects__project__item--name">{{order.id}}</div>
+                    <div class="current-projects__header__projects__project__item">{{order.location ? order.location.name : ""}}</div>
+                    <div class="current-projects__header__projects__project__item">{{order.status}}</div>
+                    <div class="current-projects__header__projects__project__item">{{order.order_products ? order.order_products.length : ""}}</div>
+                    <div class="current-projects__header__projects__project__item">{{formatDate(order.created_at)}}</div>
+                </a>
             </div>            
             
             

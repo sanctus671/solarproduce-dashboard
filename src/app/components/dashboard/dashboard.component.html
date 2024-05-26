@@ -74,7 +74,7 @@
                     <mat-icon matListItemIcon>fact_check</mat-icon>
                     <h4 matListItemTitle>Order #{{order.id}}</h4>
                     <p matListItemLine>
-                        Submitted by {{order.user ? (order.user.business_name ? order.user.business_name : order.user.name) : "a user"}} at {{formatDate(order.created_at)}}
+                        Submitted by {{order.user ? (order.user.business_name ? order.user.name + " (" + order.user.business_name + ")" : order.user.name) : "a user"}} at {{formatDate(order.created_at)}}
                     </p>
                     <button mat-icon-button matListItemMeta [routerLink]="['/orders/' + order.id]">
                        <mat-icon>keyboard_arrow_right</mat-icon>
@@ -89,7 +89,7 @@
                     <mat-icon matListItemIcon>fact_check</mat-icon>
                     <h4 matListItemTitle>Order #{{order.id}}</h4>
                     <p matListItemLine>
-                        Submitted by {{order.user ? (order.user.business_name ? order.user.business_name : order.user.name) : "a user"}} at {{formatDate(order.created_at)}}
+                        Submitted by {{order.user ? (order.user.business_name ? order.user.name + " (" + order.user.business_name + ")" : order.user.name) : "a user"}} at {{formatDate(order.created_at)}}
                     </p>
                     <button mat-icon-button matListItemMeta [routerLink]="['/orders/' + order.id]">
                        <mat-icon>keyboard_arrow_right</mat-icon>
@@ -125,7 +125,7 @@
             <mat-nav-list>
                 <a mat-list-item *ngFor="let user of users; let lastItem = last;"  [routerLink]="['/users']">
                     <mat-icon matListItemIcon>person</mat-icon>
-                    <h4 matListItemTitle>Taylor Hamling</h4>
+                    <h4 matListItemTitle>{{user.name}}</h4>
                     <p matListItemLine>
                         Created {{formatDate(user.created_at)}}
                     </p>
