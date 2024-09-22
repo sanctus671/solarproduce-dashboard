@@ -59,6 +59,14 @@ export class OrdersComponent implements OnInit {
     ngOnInit() {
    
     }   
+
+    public runTest() {
+        this.orderService.runTest().toPromise().then((data) => {
+      
+        }).catch((er) => {
+            //console.log(er);
+        })       
+    }
     
     
     
@@ -68,7 +76,7 @@ export class OrdersComponent implements OnInit {
         
         
         this.orderService.getOrders(this.query).toPromise().then((data) => {
-            console.log(data);
+      
             let orders = data;
             this.orders = {count:orders.count, data:orders.data};
             this.loading = false;

@@ -33,7 +33,7 @@ export class EditUserComponent implements OnInit {
 
             this.editUser.same_day_delivery = this.editUser.same_day_delivery ? "" + this.editUser.same_day_delivery : "0"; 
 
-            console.log(this.editUser);
+        
             this.businesses = [];
 
 
@@ -60,7 +60,7 @@ export class EditUserComponent implements OnInit {
         
         
         this.businessService.getBusinesses( {page:1, limit:999, search:"", order:"desc", order_by:"created_at"}).toPromise().then((data) => {
-            console.log(data);
+       
             let businesses = data;
             this.businesses = businesses
 

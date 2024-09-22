@@ -54,9 +54,9 @@ export class CreateUserComponent  implements OnInit{
         
         
         this.businessService.getBusinesses( {page:1, limit:999, search:"", order:"desc", order_by:"created_at"}).toPromise().then((data) => {
-            console.log(data);
+        
             let businesses = data;
-            this.businesses = businesses.data
+            this.businesses = businesses;
         }).catch(() => {
         })
     }

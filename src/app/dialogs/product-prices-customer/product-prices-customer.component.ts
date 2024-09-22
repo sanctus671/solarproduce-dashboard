@@ -43,8 +43,7 @@ export class ProductPricesCustomerComponent {
         
         
         this.userService.getUsers({page:1, limit:999, search:"", order:"", order_by:""}).toPromise().then((data) => {
-            console.log(data);
-            console.log(this.product);
+     
             let users = data;
             this.users = users.data;
             let userPrices = [];

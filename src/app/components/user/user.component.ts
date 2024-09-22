@@ -65,7 +65,7 @@ export class UserComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             
             if (result){
-                console.log(result);
+      
                 let user = result.user;
                 this.userService.updateUser(user).toPromise().then(() => {
                     this.getUser();
@@ -87,7 +87,7 @@ export class UserComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             
             if (result){
-                console.log(result);
+         
                 let newLocation = result.location;
                 newLocation.user_id = this.user.id; 
 
@@ -115,7 +115,7 @@ export class UserComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             
             if (result){
-                console.log(result);
+           
                 this.locationService.updateLocation(result.location).toPromise().then(() => {
 
                     this.getUser();

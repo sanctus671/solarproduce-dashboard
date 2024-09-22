@@ -39,7 +39,7 @@ export class EditProductComponent  implements OnInit{
                 
         let product = data.product;    
 
-        console.log(product);
+       
         
         
         if (product.gallery_images){
@@ -71,7 +71,7 @@ export class EditProductComponent  implements OnInit{
 
         this.users = [];
         this.userService.getUsers({page:1, limit:999, search:"", order:"", order_by:""}).toPromise().then((data) => {
-            console.log(data);
+      
             let users = data.data;
 
             this.users = users;

@@ -71,7 +71,7 @@ export class ProductComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             
             if (result){
-                console.log(result);
+          
                 let product = result.product;
                 this.productService.updateProduct(product).toPromise().then(() => {
                     this.getProduct();

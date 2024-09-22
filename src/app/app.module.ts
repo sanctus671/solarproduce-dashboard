@@ -61,6 +61,8 @@ import { CreateLocationComponent } from './dialogs/create-location/create-locati
 import { ProductPricesBusinessComponent } from './dialogs/product-prices-business/product-prices-business.component';
 import { ProductPricesCustomerComponent } from './dialogs/product-prices-customer/product-prices-customer.component';
 
+import { EditBusinessesComponent } from './dialogs/edit-businesses/edit-businesses.component';
+
 import { ConfirmDeleteComponent } from './dialogs/confirm-delete/confirm-delete.component';
 import { SelectDatesComponent } from './dialogs/select-dates/select-dates.component';
 
@@ -97,7 +99,8 @@ import { MatIconRegistry } from '@angular/material/icon';
         EditLocationComponent,
         CreateLocationComponent,
         ProductPricesBusinessComponent,
-        ProductPricesCustomerComponent
+        ProductPricesCustomerComponent,
+        EditBusinessesComponent
   ],
   imports: [
         BrowserModule,
@@ -128,7 +131,8 @@ import { MatIconRegistry } from '@angular/material/icon';
         EditLocationComponent,
         CreateLocationComponent,
         ProductPricesBusinessComponent,
-        ProductPricesCustomerComponent        
+        ProductPricesCustomerComponent,
+        EditBusinessesComponent    
   ],
   providers: [    
     {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},

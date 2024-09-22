@@ -1,6 +1,7 @@
 <div class="module-actions">
     <button mat-flat-button color="primary" (click)="addNew()"><mat-icon>add_circle</mat-icon> Add New Order</button>
     <button mat-flat-button color="accent" (click)="exportOrders()"><mat-icon>download</mat-icon> Export Daily Orders</button>
+<!--     <button mat-flat-button color="accent" (click)="runTest()"><mat-icon>download</mat-icon> Run Test</button> -->
     
     <div class="module-actions__filters"> 
            
@@ -54,7 +55,8 @@
                     </span>
 
                     <span *ngIf="field === 'ordered_by'">
-                        <a [routerLink]="['/users/' + element['user_id']]">{{element["user"] ? element["user"]["name"] : "Unknown"}} {{element["business"] ? "(" + element["business"]["name"] + ")" : ""}}</a>
+<!--                         <a [routerLink]="['/users/' + element['user_id']]">{{element["user"] ? element["user"]["name"] : "Unknown"}} {{element["business"] ? "(" + element["business"]["name"] + ")" : ""}}</a> -->
+{{element["user"] ? element["user"]["name"] : "Unknown"}} {{element["business"] ? "(" + element["business"]["name"] + ")" : ""}}
                     </span>   
 
                     <span *ngIf="field === 'location'">
@@ -62,7 +64,8 @@
                     </span>    
 
                     <span *ngIf="field === 'items'" >
-                        <a [routerLink]="['/orders/' + element['id']]">{{element['order_products'].length}} Items</a>
+     <!--                    <a [routerLink]="['/orders/' + element['id']]">{{element['order_products'].length}} Items</a> -->
+     {{element['order_products'].length}} Items
                     </span>                
                     
                     <span *ngIf="field === 'created_at' || field === 'updated_at' || field === 'deleted_at'">

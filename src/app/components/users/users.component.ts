@@ -68,7 +68,7 @@ export class UsersComponent implements OnInit {
         
         
         this.userService.getUsers(this.query).toPromise().then((data) => {
-            console.log(data);
+       
             let users = data;
             this.users = {count:users.count, data:users.data};
             this.loading = false;

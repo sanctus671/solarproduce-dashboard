@@ -65,7 +65,7 @@ export class CreateOrderComponent  implements OnInit{
     }
 
     public productSelected(ev, index){
-        console.log(ev.value);
+      
         for (let product of this.products){
             if (product.id === ev.value){
                 this.newOrder.order_products[index].unit = product.unit;

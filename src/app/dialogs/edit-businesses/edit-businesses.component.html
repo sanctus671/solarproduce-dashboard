@@ -1,0 +1,43 @@
+<h2 mat-dialog-title>Business Prices</h2>
+<mat-dialog-content class="business-prices">
+
+
+
+
+
+    <div class="business-prices__loading" *ngIf="loading">
+        <mat-spinner diameter="40"></mat-spinner>
+    </div> 
+
+
+
+    <div  *ngFor="let businessPrice of businesses" class="business-prices__price">
+        
+            <h6>{{businessPrice.name}}</h6>
+        <div class="business-prices__row">
+
+
+
+
+                <mat-form-field>
+                    <mat-label>Price Adjustment ($)</mat-label>
+                    <input matInput type="number" name="price" autocomplete="false" [(ngModel)]="businessPrice.fixed_price_adjustment" (keyup)="saveBusinessPrice(businessPrice)">
+                </mat-form-field>
+
+
+
+                <mat-form-field>
+                    <mat-label>Percentage Adjustment (%)</mat-label>
+                    <input matInput type="number" name="price" autocomplete="false" [(ngModel)]="businessPrice.percentage_price_adjustment" (keyup)="saveBusinessPrice(businessPrice)">
+                </mat-form-field>
+
+            </div>
+
+</div>
+
+
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close>Dismiss</button>
+    <button mat-button (click)="save()" color="primary">Save</button>    
+</mat-dialog-actions>

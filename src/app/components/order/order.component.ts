@@ -61,7 +61,7 @@ export class OrderComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             
             if (result){
-                console.log(result);
+         
                 let order = result.order;
                 this.orderService.updateOrder(order).toPromise().then(() => {
                     this.getOrder();
@@ -121,9 +121,9 @@ export class OrderComponent implements OnInit {
     public formatDate(date){
         
 
-        let localeOffset = -(new Date().getTimezoneOffset());
-        return moment(date).add(localeOffset, 'm').format("DD/MM/YYYY, h:mma");        
-		//return moment(date).format("DD/MM/YYYY, h:mma");       
+        //let localeOffset = -(new Date().getTimezoneOffset());
+        //return moment(date).add(localeOffset, 'm').format("DD/MM/YYYY, h:mma");        
+		return moment(date).format("DD/MM/YYYY, h:mma");       
     }
 
 

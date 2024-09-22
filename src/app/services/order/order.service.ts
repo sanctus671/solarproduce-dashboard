@@ -11,6 +11,12 @@ export class OrderService {
 
     constructor(private http: HttpClient) { }
     
+    public runTest(): Observable<any> {
+        return this.http.get( environment.apiUrl + '/orderstest')
+        .pipe(tap((response) => {
+        }));  
+    }
+    
     public getOrders(query): Observable<any> {
         return this.http.get( environment.apiUrl + '/orders?order_by=' + query.order_by + "&order=" + query.order + "&page=" + query.page + "&limit=" + query.limit + "&search=" + query.search)
         .pipe(tap((response) => {

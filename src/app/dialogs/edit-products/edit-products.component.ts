@@ -104,8 +104,8 @@ export class EditProductsComponent {
         
         
         
-        this.productService.getProducts( {page:1, limit:999, search:"", order:"desc", order_by:"created_at"}).toPromise().then((data) => {
-            console.log(data);
+        this.productService.getProducts( {page:1, limit:999, search:"", order:"desc", order_by:"category"}).toPromise().then((data) => {
+     
             let products = data;
             this.products = products.data
             this.loading = false;
@@ -121,7 +121,7 @@ export class EditProductsComponent {
         
         
         this.businessService.getBusinesses( {page:1, limit:999, search:"", order:"desc", order_by:"created_at"}).toPromise().then((data) => {
-            console.log(data);
+         
             let businesses = data;
             this.businesses = businesses.data
         }).catch(() => {
@@ -135,7 +135,7 @@ export class EditProductsComponent {
         
         
         this.userService.getUsers( {page:1, limit:999, search:"", order:"desc", order_by:"created_at"}).toPromise().then((data) => {
-            console.log(data);
+         
             let users = data;
             this.users = users.data
         }).catch(() => {

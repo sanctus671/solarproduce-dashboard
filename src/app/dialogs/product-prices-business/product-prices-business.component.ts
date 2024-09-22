@@ -42,8 +42,7 @@ export class ProductPricesBusinessComponent {
         
         
         this.businessService.getBusinesses({page:1, limit:999, search:"", order:"", order_by:""}).toPromise().then((data) => {
-            console.log(data);
-            console.log(this.product);
+  
             let businesses = data;
             this.businesses = businesses;
             let businessPrices = [];
